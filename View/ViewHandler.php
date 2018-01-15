@@ -347,6 +347,8 @@ class ViewHandler extends ContainerAware implements ViewHandlerInterface
             ? $this->getRouter()->generate($route, (array) $view->getData(), true)
             : $view->getLocation();
 
+        $location = str_ireplace('http://', 'https://', $location);
+        
         if ($location) {
             return $this->createRedirectResponse($view, $location, $format);
         }
